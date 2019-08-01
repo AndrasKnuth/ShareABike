@@ -10,10 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class MainController {
 
   @PostMapping("/shortit")
-  public List<String> shortit(HttpServletRequest httpServletRequest) {
+  public String shortit(HttpServletRequest httpServletRequest) {
     List<String> strings = new ArrayList<>();
     String kutya = "kutya";
-
+    kutya = httpServletRequest.getQueryString() + " " + httpServletRequest.getHeader("text") + " " +
+        httpServletRequest.getParameter("text");
 
     System.out.println(httpServletRequest.getHeaderNames());
 
@@ -22,6 +23,6 @@ public class MainController {
     strings.add(httpServletRequest.getQueryString());
     strings.add(httpServletRequest.getHeader("text"));
     strings.add(httpServletRequest.getParameter("text"));
-    return strings;
+    return kutya;
   }
 }
