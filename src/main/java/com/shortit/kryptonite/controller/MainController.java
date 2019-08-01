@@ -20,13 +20,7 @@ public class MainController {
     this.bitlyClient = bitlyClient;
   }
 
-<<<<<<< HEAD
-  @RequestMapping(
-      value = "/shortit",
-      method = RequestMethod.POST,
-=======
   @RequestMapping(value = "/shortit", method = RequestMethod.POST,
->>>>>>> cd076405d3cad949813ffd6941db60740e3c4c46
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public String onReceiveSlashCommand(
       @RequestParam("team_id") String teamId,
