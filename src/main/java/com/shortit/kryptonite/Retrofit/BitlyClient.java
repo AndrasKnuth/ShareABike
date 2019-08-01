@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Header;
 
 @Service
-public class BitlyClient implements APIConfiguration{
+public class BitlyClient implements APIConfiguration {
 
   private BitlyInterface bitlyInterface;
 
@@ -27,7 +27,7 @@ public class BitlyClient implements APIConfiguration{
     this.bitlyInterface = retrofit.create(BitlyInterface.class);
   }
 
-  public BitlyModel getShortUrl(String groupGuid,String longUrl) throws IOException {
+  public BitlyModel getShortUrl(String groupGuid, String longUrl) throws IOException {
     String token = "7362de8f2bdf1f74a6a577214f0565a296f4a6b8";
 
     HttpHeaders headers = new HttpHeaders();
@@ -37,11 +37,9 @@ public class BitlyClient implements APIConfiguration{
 
     ObjectToRetrofit objectToRetrofit = new ObjectToRetrofit(groupGuid, longUrl);
 
-    Call<BitlyModel> callSync = bitlyInterface.shortenUrl(headers, objectToRetrofit);
+    Call<BitlyModel> callSync = bitlyInterface.shortenUrl(token);
 
     Response<BitlyModel> response = callSync.execute();
-
-
 
     if (!response.isSuccessful()) {
       throw new IOException(
