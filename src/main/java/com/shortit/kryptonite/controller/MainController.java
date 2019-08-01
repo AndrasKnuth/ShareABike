@@ -16,7 +16,6 @@ public class MainController {
   @Autowired
   BitlyClient bitlyClient;
 
-
   @RequestMapping(value = "/shortit",
       method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -33,21 +32,4 @@ public class MainController {
     System.out.println(bitlyClient.getShortUrl("kutya", text).getLink());
     return "kutya" + bitlyClient.getShortUrl("kutya", text).getLink();
   }
-
-  /*@PostMapping("/shortit")
-  public String shortit(HttpServletRequest httpServletRequest) {
-    List<String> strings = new ArrayList<>();
-    String kutya = "kutya";
-    kutya = httpServletRequest.getQueryString() + " " + httpServletRequest.getHeader("text") + " " +
-        httpServletRequest.getParameter("text");
-
-    System.out.println(httpServletRequest.getHeaderNames());
-
-    //System.out.println(httpServletRequest.getInputStream().toString());
-    System.out.println(httpServletRequest.getParameterMap().entrySet());
-    strings.add(httpServletRequest.getQueryString());
-    strings.add(httpServletRequest.getHeader("text"));
-    strings.add(httpServletRequest.getParameter("text"));
-    return kutya;
-  }*/
 }
