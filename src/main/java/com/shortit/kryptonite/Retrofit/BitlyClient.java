@@ -1,6 +1,7 @@
 package com.shortit.kryptonite.Retrofit;
 
 import java.io.IOException;
+import model.ObjectToRetrofit;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -23,10 +24,11 @@ public class BitlyClient {
     this.bitlyInterface = retrofit.create(BitlyInterface.class);
   }
 
-  public BitlyModel getShortUrl() throws IOException {
+  public BitlyModel getShortUrl(String groupGuid,String longUrl) throws IOException {
 
-    String token = "DSADSADASDASDSDADDSD";
-    Call<BitlyModel> callSync = bitlyInterface.shortenUrl(token);
+    ObjectToRetrofit objectToRetrofit = new ObjectToRetrofit(groupGuid, longUrl);
+    String token = "7362de8f2bdf1f74a6a577214f0565a296f4a6b8";
+    Call<BitlyModel> callSync = bitlyInterface.shortenUrl(token, objectToRetrofit);
 
     Response<BitlyModel> response = callSync.execute();
 

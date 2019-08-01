@@ -1,21 +1,22 @@
 package com.shortit.kryptonite.controller;
 
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import model.SlashText;
+import com.shortit.kryptonite.Retrofit.BitlyClient;
+
+import java.io.IOException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
+
+  @Autowired
+  BitlyClient bitlyClient;
+
+
   @RequestMapping(value = "/shortit",
       method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -27,8 +28,9 @@ public class MainController {
       @RequestParam("user_name") String userName,
       @RequestParam("command") String command,
       @RequestParam("text") String text,
-      @RequestParam("response_url") String responseUrl) {
-    return text;
+      @RequestParam("response_url") String responseUrl) throws IOException {
+
+    return bitlyClient.getShortUrl("kutya", text).getLink();
   }
 
   /*@PostMapping("/shortit")
