@@ -1,5 +1,39 @@
 version: 2.1
 jobs:
+  test:
+    working_directory: ~/repo
+
+    docker:
+      - image: circleci/openjdk:8-jdk
+
+    environment:
+      # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
+      TZ: "Europe/Amsterdam"
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            - v1-dependencies-
+
+      - run: gradle dependencies
+
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
+
+      - run: gradle checkstyleMain
+      - run: gradle checkstyleTest
+      - run: gradle test
+
+      - store_test_results:
+          path: build/test-results
+
   build:
     working_directory: ~/repo
 
@@ -47,9 +81,12 @@ jobs:
 
 workflows:
   version: 2.1
-  build-and-deploy:
+  test-build-and-deploy:
     jobs:
+      - test
       - build:
+          requires:
+            - test
       - deploy:
           requires:
             - build
