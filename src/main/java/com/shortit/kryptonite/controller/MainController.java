@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-  @PostMapping("http://localhost:8080/shortit")
+  @PostMapping("/shortit")
   public String shortit(HttpServletRequest httpServletRequest) {
     String kutya = "kutya";
     System.out.println(httpServletRequest.toString());
