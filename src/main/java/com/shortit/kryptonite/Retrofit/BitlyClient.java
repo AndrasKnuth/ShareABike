@@ -2,12 +2,13 @@ package com.shortit.kryptonite.Retrofit;
 
 import java.io.IOException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-@Component
+//@Service
 public class BitlyClient {
 
   private BitlyInterface bitlyInterface;
