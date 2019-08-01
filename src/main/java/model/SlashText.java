@@ -7,9 +7,20 @@ import lombok.Setter;
 @Setter
 @Getter
 public class SlashText {
+
   private String token;
   private String command;
   private String text;
+
+  @JsonProperty("enterprise_id")
+  private String enterprise_id;
+
+  @JsonProperty("enterprise_name")
+  private String enterprise_name;
+
+  @JsonProperty("trigger_id")
+  private String trigger_id;
+
 
   @JsonProperty("team_id")
   private String teamId;
@@ -32,14 +43,12 @@ public class SlashText {
   @JsonProperty("response_url")
   private String responseUrl;
 
-  public String getToken() {
-    return token;
-  }
-
   public String toString() {
     return
-        getToken() + "|" + getCommand() + "|" + getText() + "|" + getTeamId() + "|" + getTeamDomain() + "|" +
-            getChannelId() + "|" + getChannelName() + "|" + getUserId() + "|" + getUserName() + "|" +
+        getToken() + "|" + getCommand() + "|" + getText() + "|" + getTeamId() + "|"
+            + getTeamDomain() + "|" +
+            getChannelId() + "|" + getChannelName() + "|" + getUserId() + "|" + getUserName() + "|"
+            +
             getResponseUrl();
   }
 }
