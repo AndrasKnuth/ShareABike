@@ -7,7 +7,7 @@ jobs:
       - image: circleci/openjdk:8-jdk
 
     environment:
-      # Customize the JVM maximum heap limit
+      # Customize the JVM maximum heap
       JVM_OPTS: -Xmx3200m
       TERM: dumb
       TZ: "Europe/Amsterdam"
@@ -61,22 +61,6 @@ jobs:
 
       - run: gradle build
 
-  deploy:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: bash .circleci/setup-heroku.sh
-      - add_ssh_keys:
-          fingerprints:
-            - $HEROKU_SSH_FINGERPRINT
-      - deploy:
-          name: Deploy to Heroku if tests pass and branch is development
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              git push --force git@heroku.com:$HEROKU_APP_NAME.git HEAD:refs/heads/master
-            fi
-
 workflows:
   version: 2.1
   test-build-and-deploy:
@@ -85,9 +69,3 @@ workflows:
       - build:
           requires:
             - test
-      - deploy:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master

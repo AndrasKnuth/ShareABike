@@ -9,5 +9,4 @@ public class KryptoniteApplication {
   public static void main(String[] args) {
     SpringApplication.run(KryptoniteApplication.class, args);
   }
-
 }
