@@ -9,6 +9,8 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface BitlyInterface {
-  @POST("shorten?token={token}")
-  Call<BitlyModel> shortenUrl(@Path("token") String token, @Body ObjectToRetrofit objectToRetrofit);
+
+  @POST("/shorten")
+  Call<BitlyModel> shortenUrl(@Header("Access Token") String token, @Body ObjectToRetrofit objectToRetrofit);
+
 }
