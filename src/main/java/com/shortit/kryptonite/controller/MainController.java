@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
-  @RequestMapping(value = "/slack/slash",
+  @RequestMapping(value = "/shortit",
       method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public String onReceiveSlashCommand(@RequestParam("team_id") String teamId,
