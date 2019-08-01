@@ -16,8 +16,7 @@ public class MainController {
   @Autowired
   BitlyClient bitlyClient;
 
-  @RequestMapping(value = "/shortit",
-      method = RequestMethod.POST,
+  @RequestMapping(value = "/shortit", method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
   public String onReceiveSlashCommand(@RequestParam("team_id") String teamId,
       @RequestParam("team_domain") String teamDomain,
@@ -30,8 +29,8 @@ public class MainController {
       @RequestParam("response_url") String responseUrl) throws IOException {
 
     System.out.println(bitlyClient.getShortUrl("kutya", text).getLong_url());
-    System.out.println(bitlyClient.getShortUrl("kutya", text).toString());
     System.out.println(text);
+    System.out.println(bitlyClient.getShortUrl("kutya", text).getTitle());
     return "kutya" + bitlyClient.getShortUrl("kutya", text).getLink();
   }
 }
