@@ -21,7 +21,6 @@ public class SlashText {
   @JsonProperty("trigger_id")
   private String trigger_id;
 
-
   @JsonProperty("team_id")
   private String teamId;
 

@@ -29,7 +29,9 @@ public class MainController {
       @RequestParam("text") String text,
       @RequestParam("response_url") String responseUrl) throws IOException {
 
-    System.out.println(bitlyClient.getShortUrl("kutya", text).getLink());
+    System.out.println(bitlyClient.getShortUrl("kutya", text).getLong_url());
+    System.out.println(bitlyClient.getShortUrl("kutya", text).toString());
+    System.out.println(text);
     return "kutya" + bitlyClient.getShortUrl("kutya", text).getLink();
   }
 }

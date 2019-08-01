@@ -10,14 +10,14 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Service
-public class BitlyClient {
+public class BitlyClient implements APIConfiguration{
 
   private BitlyInterface bitlyInterface;
 
   public BitlyClient() {
     Retrofit retrofit =
         new Retrofit.Builder()
-            .baseUrl("https://api-ssl.bitly.com/v4/")
+            .baseUrl(API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
