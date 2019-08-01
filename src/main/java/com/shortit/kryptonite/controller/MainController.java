@@ -13,13 +13,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MainController {
 
-  @Autowired
-  BitlyClient bitlyClient;
+  private BitlyClient bitlyClient;
 
-  @RequestMapping(value = "/shortit",
+  @Autowired
+  public MainController(BitlyClient bitlyClient) {
+    this.bitlyClient = bitlyClient;
+  }
+
+  @RequestMapping(
+      value = "/shortit",
       method = RequestMethod.POST,
       consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-  public String onReceiveSlashCommand(@RequestParam("team_id") String teamId,
+  public String onReceiveSlashCommand(
+      @RequestParam("team_id") String teamId,
       @RequestParam("team_domain") String teamDomain,
       @RequestParam("channel_id") String channelId,
       @RequestParam("channel_name") String channelName,
@@ -27,7 +33,8 @@ public class MainController {
       @RequestParam("user_name") String userName,
       @RequestParam("command") String command,
       @RequestParam("text") String text,
-      @RequestParam("response_url") String responseUrl) throws IOException {
+      @RequestParam("response_url") String responseUrl)
+      throws IOException {
 
     System.out.println(bitlyClient.getShortUrl("kutya", text).getLong_url());
     System.out.println(bitlyClient.getShortUrl("kutya", text).toString());
