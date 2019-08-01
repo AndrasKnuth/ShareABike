@@ -2,7 +2,7 @@ package com.shortit.kryptonite.exception;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import com.shortit.kryptonite.exception.customexceptions.URLFormatException;
-import com.shortit.kryptonite.exception.customexceptions.shortURLException;
+import com.shortit.kryptonite.exception.customexceptions.ShortURLException;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,8 +26,8 @@ public class ExceptionHandlerAdvice {
     return createCustomErrorResponse(errorResponseModel);
   }
 
-  @ExceptionHandler(shortURLException.class)
-  public ResponseEntity<ErrorResponseModel> handleTimeRelatedException(shortURLException e,
+  @ExceptionHandler(ShortURLException.class)
+  public ResponseEntity<ErrorResponseModel> handleTimeRelatedException(ShortURLException e,
       HttpServletRequest httpServletRequest) {
     errorResponseModel = new ErrorResponseModel(BAD_REQUEST,
         e.getMessage(), httpServletRequest.getServletPath());
