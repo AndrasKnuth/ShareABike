@@ -2,15 +2,12 @@ package com.shortit.kryptonite.Retrofit;
 
 import java.io.IOException;
 import model.ObjectToRetrofit;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Header;
+
 
 @Service
 public class BitlyClient implements APIConfiguration {
@@ -30,14 +27,14 @@ public class BitlyClient implements APIConfiguration {
   public BitlyModel getShortUrl(String groupGuid, String longUrl) throws IOException {
     String token = "7362de8f2bdf1f74a6a577214f0565a296f4a6b8";
 
-    HttpHeaders headers = new HttpHeaders();
-
-    headers.setContentType(MediaType.APPLICATION_JSON);
-    headers.add("Access Token", token);
+    //    HttpHeaders headers = new HttpHeaders();
+    //
+    //    headers.setContentType(MediaType.APPLICATION_JSON);
+    //    headers.add("Access Token", token);
 
     ObjectToRetrofit objectToRetrofit = new ObjectToRetrofit(groupGuid, longUrl);
 
-    Call<BitlyModel> callSync = bitlyInterface.shortenUrl(token);
+    Call<BitlyModel> callSync = bitlyInterface.shortenUrl("Bearer " + token);
 
     Response<BitlyModel> response = callSync.execute();
 
