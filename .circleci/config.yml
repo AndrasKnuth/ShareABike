@@ -27,8 +27,6 @@ jobs:
             - ~/.gradle
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
-      - run: gradle checkstyleMain
-      - run: gradle checkstyleTest
       - run: gradle test
 
       - store_test_results:
