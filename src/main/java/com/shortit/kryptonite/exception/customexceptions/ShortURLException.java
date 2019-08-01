@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @Getter
 @Setter
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class shortURLException extends RuntimeException {
+public class ShortURLException extends RuntimeException {
 
-  public shortURLException(String message) {
+  public ShortURLException(String message) {
     super(message);
   }
 }
