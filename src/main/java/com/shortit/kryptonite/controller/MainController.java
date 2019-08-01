@@ -17,8 +17,8 @@ public class MainController {
 
 
   @RequestMapping(
-      value = "/shortit", method = RequestMethod.POST
-
+      value = "/shortit", method = RequestMethod.POST,
+      consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE
   )
   public @ResponseBody
   String slack(@RequestBody SlashText slackSlashCommand) {

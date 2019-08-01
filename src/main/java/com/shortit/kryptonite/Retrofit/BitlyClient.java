@@ -8,7 +8,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-//@Service
+@Service
 public class BitlyClient {
 
   private BitlyInterface bitlyInterface;
@@ -16,7 +16,7 @@ public class BitlyClient {
   public BitlyClient() {
     Retrofit retrofit =
         new Retrofit.Builder()
-            .baseUrl("https://api-ssl.bitly.com/v4")
+            .baseUrl("https://api-ssl.bitly.com/v4/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
