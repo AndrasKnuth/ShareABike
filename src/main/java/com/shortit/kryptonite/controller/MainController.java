@@ -1,5 +1,6 @@
 package com.shortit.kryptonite.controller;
 
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -9,18 +10,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MainController {
-
-
-  @RequestMapping(
-      value = "/shortit", method = RequestMethod.POST
-  )
-  public String slack(@RequestBody SlashText slackSlashCommand) {
-    return slackSlashCommand.getText();
+  @RequestMapping(value = "/slack/slash",
+      method = RequestMethod.POST,
+      consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+  public String onReceiveSlashCommand(@RequestParam("team_id") String teamId,
+      @RequestParam("team_domain") String teamDomain,
+      @RequestParam("channel_id") String channelId,
+      @RequestParam("channel_name") String channelName,
+      @RequestParam("user_id") String userId,
+      @RequestParam("user_name") String userName,
+      @RequestParam("command") String command,
+      @RequestParam("text") String text,
+      @RequestParam("response_url") String responseUrl) {
+    return text;
   }
 
   /*@PostMapping("/shortit")

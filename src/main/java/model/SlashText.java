@@ -42,13 +42,4 @@ public class SlashText {
 
   @JsonProperty("response_url")
   private String responseUrl;
-
-  public String toString() {
-    return
-        getToken() + "|" + getCommand() + "|" + getText() + "|" + getTeamId() + "|"
-            + getTeamDomain() + "|" +
-            getChannelId() + "|" + getChannelName() + "|" + getUserId() + "|" + getUserName() + "|"
-            +
-            getResponseUrl();
-  }
 }
