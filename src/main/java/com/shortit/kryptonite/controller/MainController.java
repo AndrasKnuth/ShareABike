@@ -1,6 +1,7 @@
 package com.shortit.kryptonite.controller;
 
 
+import com.shortit.kryptonite.service.Service;
 import java.io.IOException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +27,6 @@ public class MainController {
       @RequestParam("response_url") String responseUrl)
       throws IOException {
 
-    return "kutya";
+    return Service.openConnection();
   }
 }

@@ -11,7 +11,9 @@ import model.ParameterStringBuilder;
 
 public class Service {
 
-  public void openConnection() {
+  public static String openConnection() {
+
+    StringBuffer content = new StringBuffer();
 
     try {
       URL url = new URL("https://api.rebrandly.com/v1/links");
@@ -30,7 +32,6 @@ public class Service {
       BufferedReader in = new BufferedReader(
           new InputStreamReader(con.getInputStream()));
       String inputLine;
-      StringBuffer content = new StringBuffer();
       while ((inputLine = in.readLine()) != null) {
         content.append(inputLine);
       }
@@ -39,9 +40,7 @@ public class Service {
     } catch (Exception e) {
       System.out.println("kutyaaa");
     }
-
-
-
+    return content.toString();
   }
 
 }
