@@ -1,16 +1,12 @@
 package com.shortit.kryptonite.Retrofit;
 
-import model.ObjectToRetrofit;
-import org.springframework.http.HttpHeaders;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface BitlyInterface {
-
-  @POST("/shorten")
-
-  Call<BitlyModel> shortenUrl(@Header("Authorization") String token);
-9341dcc880203486f6907cc89b747e7bdfb55209
+  @POST("/links")
+  Call<RebrandlyModel> shortenUrl(@Header("Content-Type") String contentType,
+      @Header("apikey")String apikey, @Body String destination);
 }
