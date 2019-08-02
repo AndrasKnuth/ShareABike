@@ -11,6 +11,6 @@ import retrofit2.http.Query;
 public interface BitlyInterface {
 
   @POST("/shorten")
-  Call<BitlyModel> shortenUrl(@Header("Access Token") String token, @Body ObjectToRetrofit objectToRetrofit);
+  Call<BitlyModel> shortenUrl(@Header("AccessToken") String token, @Body ObjectToRetrofit objectToRetrofit);
 
 }
